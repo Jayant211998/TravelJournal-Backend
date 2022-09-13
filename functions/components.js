@@ -154,7 +154,6 @@ exports.getUser=async(req,res)=>{
         (await response).forEach(doc => {
             responseArr.push(doc.data());
         })
-        console.log(responseArr[0])
         if(responseArr[0])
             return responseArr;
         return "NotFound";

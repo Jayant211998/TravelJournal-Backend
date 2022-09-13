@@ -109,7 +109,7 @@ exports.register = async(req,res)=>{
     }else{
         res.status(201).send({message:"There is Some  Issue Try After Some Time.",status: false,resp: true});
     }
-}
+} 
 exports.login = async(req,res)=>{
     let getUser = await components.getUser(req.body.data,res);
     if(getUser==="NotFound" && req.body.data.changePass){

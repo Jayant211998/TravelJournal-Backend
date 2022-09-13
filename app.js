@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
-});
+}); 
 
 
 app.get('/getAllData',validateToken,controller.getAllData);
@@ -42,4 +42,4 @@ app.post('/changePassword',validateToken,controller.changePassword);
 
 
 app.listen(process.env.PORT,()=>{console.log("Server Running")})
-
+// exports.app = functions.https.onRequest(app); 

@@ -165,7 +165,7 @@ exports.getUser=async(req,res)=>{
 }
  
 exports.forgetPassword=async(req,res)=>{
-    //const db = getdb();
+    //const db = getdb(); 
     try{
         const response = (await db.collection(req.auth)
                                 .where('username','==',req.username)                  
@@ -174,7 +174,7 @@ exports.forgetPassword=async(req,res)=>{
         (await response).forEach(doc => {
             responseArr.push(doc.data());
         })
-
+ 
         if(responseArr[0])
             return responseArr[0].id;
         return "NotFound";

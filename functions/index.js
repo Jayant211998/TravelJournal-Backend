@@ -1,3 +1,9 @@
+const functions = require("firebase-functions");
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv'); 
@@ -19,7 +25,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
-});
+}); 
 
 
 app.get('/getAllData',validateToken,controller.getAllData);
@@ -41,5 +47,5 @@ app.post('/forgetPassword',controller.forgetPassword,sendEmail,controller.change
 app.post('/changePassword',validateToken,controller.changePassword);
 
 
-app.listen(process.env.PORT,()=>{console.log("Server Running")})
-
+// app.listen(process.env.PORT,()=>{console.log("Server Running")})
+exports.app = functions.https.onRequest(app); 

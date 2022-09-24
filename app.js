@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
     next();
 }); 
 
-
+app.get('/check',controller.check);
 app.get('/getAllData',validateToken,controller.getAllData);
 app.get('/getDataByUserId/:id',validateToken,controller.getDataByUserId);
 app.get('/getDataById/:id',validateToken,controller.getDataById);

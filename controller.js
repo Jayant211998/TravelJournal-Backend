@@ -1,10 +1,13 @@
 const jwt = require('jsonwebtoken');
 const components = require('./components')
 
+exports.check = async(req,res,next)=>{
+     res.status(200).send({message:"Connected",status: false,resp: true})
+}
 
 exports.addData = async(req,res,next)=>{
     if(req.user.auth!=='admin'){
-        return res.status(201).send({message:"You Are Unauthorised",status: false,resp: true});
+        res.status(201).send({message:"You Are Unauthorised",status: false,resp: true});
     }
     const addData = await components.addData(req.body.data,res)
     if(addData){
@@ -70,7 +73,7 @@ exports.getImages = async(req,res,next)=>{
 }
 exports.upadateData = async(req,res,next)=>{
     if(req.user.auth!='admin'){
-        return res.status(201).send({message:"You Are Unauthorised",status: false,resp: true});
+        res.status(201).send({message:"You Are Unauthorised",status: false,resp: true});
     }
     const upadateData = await components.upadateData(req.params.id,req.body.data,res)
     if(upadateData){
@@ -94,7 +97,7 @@ exports.deleteData = async(req,res,next)=>{
     }    
     const deleteData = await components.deleteData(req.params.id,res)
     if(deleteData){
-    res.status(200).send({message:"Data Deleted Successfully",status: true,resp: true})
+        res.status(200).send({message:"Data Deleted Successfully",status: true,resp: true})
     }else{
         res.status(201).send({message:"There is Some  Issue Try After Some Time.",status: false,resp: true});
     }

@@ -14,7 +14,7 @@ dotenv.config();
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONT_END);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -37,7 +37,8 @@ app.get('/getAllUser',controller.getAllUser);
 app.get('/getAllAdmin',controller.getAllAdmin);
 app.post('/register', controller.register);
 app.post('/login', controller.login);
-app.post('/forgetPassword',controller.forgetPassword,sendEmail,controller.changePassword);
+app.post('/resetPassword/:auth/:id', controller.resetPassword);
+app.post('/forgetPassword',controller.forgetPassword,sendEmail);
 app.post('/changePassword',validateToken,controller.changePassword);
 
 

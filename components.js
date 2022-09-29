@@ -197,7 +197,9 @@ exports.upadateData=async(destid,req,res)=>{
                             startDate:req.startDate,
                             endDate:req.endDate,
                             link:req.link,
-                            image:req.image,})
+                            image:req.image,
+                            imageList: req.imageList
+                        })
                         );
         return response;
     }
@@ -235,7 +237,6 @@ exports.changePassword=async(req,res)=>{
         console.log(err);
     }                                            
 }
-
 
 exports.deleteData=async(destId,res)=>{
     // const db=getdb();

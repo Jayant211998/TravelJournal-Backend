@@ -141,7 +141,7 @@ exports.forgetPassword = async(req,res,next)=>{
     }
     else if(forgetPassword){ 
         req.body.data.id = forgetPassword;
-        next();
+        next(); 
     }else {
         res.status(201).send({message:"There is Some  Issue Try After Some Time.",status: false,resp: true});
     }
@@ -151,6 +151,15 @@ exports.changePassword = async(req,res,next)=>{
     let changePassword = await components.changePassword(data,res);
     if(changePassword){
             res.status(200).send({data:changePassword,status: true,resp: true});
+    }else {
+         res.status(200).send({message:"Invalid Login Credentials",status: false,resp: true});
+    }
+}
+exports.resetPassword = async(req,res,next)=>{
+    const data = {password:req.body.data.password,id:req.params.id,auth:req.params.auth};
+    let resetPassword = await components.changePassword(data,res);
+    if(resetPassword){
+            res.status(200).send({data:resetPassword,status: true,resp: true});
     }else {
          res.status(200).send({message:"Invalid Login Credentials",status: false,resp: true});
     }

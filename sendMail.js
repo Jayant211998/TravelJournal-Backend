@@ -11,13 +11,11 @@ module.exports.sendEmail=(req,res,next)=>{
       port: 465,
       host: 'smtp.gmail.com'
       });
-      const OTP = (Math.floor(100000 + Math.random() * 900000)).toString();
-      req.body.data.otp = OTP;
       const mailOptions = {
         from: process.env.EMAIL,
         to: req.body.data.username,
         subject: 'Forgot Password Email ',
-        text: 'Password is '+OTP
+        text: `${process.env.FRONT_END}/resetpassword/${req.body.data.auth}/${req.body.data.id}`
       };
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
@@ -26,5 +24,5 @@ module.exports.sendEmail=(req,res,next)=>{
           console.log('Email sent: ' + info.response);
         }
       });
-      next();
+      res.send({data:"Email Sent on Provided Email ID",status: true,resp: true});
 }

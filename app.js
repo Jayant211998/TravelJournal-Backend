@@ -36,6 +36,7 @@ app.delete('/deleteData/:id',validateTokenAdmin,controller.deleteData);
 app.get('/getAllUser',controller.getAllUser);
 app.get('/getAllAdmin',controller.getAllAdmin);
 app.post('/register', controller.register);
+app.post('/verifyuser', sendEmail);
 app.post('/login', controller.login);
 app.post('/resetPassword/:auth/:id', controller.resetPassword);
 app.post('/forgetPassword',controller.forgetPassword,sendEmail);

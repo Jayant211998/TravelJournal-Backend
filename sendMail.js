@@ -15,7 +15,8 @@ module.exports.sendEmail=(req,res,next)=>{
         from: process.env.EMAIL,
         to: req.body.data.username,
         subject: 'Forgot Password Email ',
-        text: `${process.env.FRONT_END}/resetpassword/${req.body.data.auth}/${req.body.data.id}`
+        text: req.body.data.otp?`Your OTP is ${req.body.data.otp}`:
+        `Use the Link To Reset Your Password ${process.env.FRONT_END}/resetpassword/${req.body.data.auth}/${req.body.data.id}`
       };
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {

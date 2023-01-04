@@ -6,7 +6,6 @@ const controller = require('./controller')
 const { validateToken,validateTokenAdmin } = require('./validateToken');
 const {sendEmail}= require('./sendMail');
 
- 
 
 const app = express();
 app.use(cors());
